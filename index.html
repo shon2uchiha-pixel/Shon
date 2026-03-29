@@ -1,0 +1,388 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shon Sebastian | Cyber Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green: #00ff88;
+      --dark: #080c10;
+      --card: #0d1117;
+      --border: #1a2a1a;
+      --muted: #4a6a4a;
+      --text: #c9d1d9;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 17px;
+  overflow-x: hidden;
+}
+
+/* Scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,255,136,0.015) 2px,
+    rgba(0,255,136,0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 5%;
+  background: rgba(8,12,16,0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--green);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--green); }
+
+/* HERO */
+#home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 5% 60px;
+  position: relative;
+  overflow: hidden;
+}
+#home::after {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+.hero-photo {
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--green);
+  box-shadow: 0 0 30px rgba(0,255,136,0.2);
+  flex-shrink: 0;
+}
+.hero-content { max-width: 700px; animation: fadeUp 1s ease both; }
+.hero-tag {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--green);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+}
+h1 {
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 18px;
+}
+h1 span { color: var(--green); }
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 520px;
+}
+.btn {
+  display: inline-block;
+  padding: 13px 32px;
+  border: 1px solid var(--green);
+  color: var(--green);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.btn:hover { background: var(--green); color: var(--dark); }
+
+/* SECTIONS */
+section { padding: 90px 5%; }
+.section-label {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--green);
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+/* ABOUT */
+#about { border-top: 1px solid var(--border); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.about-text p {
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.about-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 22px 26px;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--green);
+}
+.stat-num {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 2rem;
+  color: var(--green);
+}
+.stat-label { color: var(--muted); font-size: 0.9rem; letter-spacing: 1px; }
+
+/* SKILLS */
+#skills { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+.skill-item {
+  border: 1px solid var(--border);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.2s, background 0.2s;
+  cursor: default;
+}
+.skill-item:hover { border-color: var(--green); background: rgba(0,255,136,0.04); }
+.skill-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+}
+.skill-name { font-size: 0.95rem; letter-spacing: 1px; color: var(--text); }
+
+/* PROJECTS */
+#projects { border-top: 1px solid var(--border); }
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 28px;
+  transition: border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.project-card:hover { border-color: var(--green); }
+.project-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--green);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+  transform-origin: left;
+}
+.project-card:hover::after { transform: scaleX(1); }
+.project-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--green);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+.project-title { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.project-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+/* CONTACT */
+#contact { background: var(--card); border-top: 1px solid var(--border); }
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 10px;
+}
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.contact-link:hover { border-color: var(--green); color: var(--green); }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  border-top: 1px solid var(--border);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .about-grid { grid-template-columns: 1fr; gap: 30px; }
+  .nav-links { gap: 16px; }
+  h1 { font-size: 2.5rem; }
+}
+
+
+</style>
+</head>
+<body><nav>
+  <div class="logo">&lt;SHON/&gt;</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav><!-- HERO --><section id="home">
+  <div class="hero-inner">
+  <img src="28FF0E4A-7F62-4857-B9A6-E0A4A6517BC3.jpeg" alt="Shon Sebastian" class="hero-photo"/>
+  <div class="hero-content">
+    <div class="hero-tag">// INITIALIZING PROFILE</div>
+    <h1>Shon<br><span>Sebastian</span></h1>
+    <p class="hero-sub">Cyber Security Student at VJEC — passionate about ethical hacking, network defense, and building a safer digital world.</p>
+    <a href="#contact" class="btn">GET IN TOUCH</a>
+  </div>
+  </div>
+</section><!-- ABOUT --><section id="about">
+  <div class="section-label">// 01 — ABOUT</div>
+  <h2>About Me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I am Shon Sebastian, a B.Tech student specializing in Cyber Security at VJEC. I have a strong passion for understanding how systems work and how to protect them from threats.</p>
+      <p>I enjoy exploring vulnerabilities, learning about network security, and staying up to date with the evolving cyber threat landscape.</p>
+      <h3 style="color:#fff; margin: 20px 0 10px; font-size:1.1rem; letter-spacing:1px;">Career Objective</h3>
+      <p>To become a skilled cyber security professional and contribute to protecting organizations from digital threats using modern security practices and tools.</p>
+    </div>
+    <div class="about-stat">
+      <div class="stat-card">
+        <div class="stat-num">VJEC</div>
+        <div class="stat-label">Viswajyothi College of Engineering</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">B.Tech</div>
+        <div class="stat-label">Cyber Security Specialization</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">SEC</div>
+        <div class="stat-label">Focused on Ethical Hacking & Defense</div>
+      </div>
+    </div>
+  </div>
+</section><!-- SKILLS --><section id="skills">
+  <div class="section-label">// 02 — SKILLS</div>
+  <h2>My Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Network Security</span></div>
+    <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Ethical Hacking</span></div>
+    <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Linux</span></div>
+    <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Python</span></div>
+    <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">C Programming</span></div>
+    <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">HTML & CSS</span></div>
+    <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Cryptography</span></div>
+    <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Vulnerability Assessment</span></div>
+  </div>
+</section><!-- PROJECTS --><section id="projects">
+  <div class="section-label">// 03 — PROJECTS</div>
+  <h2>My Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-tag">WEB</div>
+      <div class="project-title">Portfolio Website</div>
+      <p class="project-desc">Personal portfolio built with HTML & CSS showcasing my skills and projects in cyber security.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">SECURITY</div>
+      <div class="project-title">Network Scanner</div>
+      <p class="project-desc">A Python-based tool to scan and identify open ports and services on a network.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">CTF</div>
+      <div class="project-title">CTF Challenges</div>
+      <p class="project-desc">Participated in Capture The Flag competitions to sharpen real-world hacking and defense skills.</p>
+    </div>
+  </div>
+</section><!-- CONTACT --><section id="contact">
+  <div class="section-label">// 04 — CONTACT</div>
+  <h2>Contact Me</h2>
+  <div class="contact-links">
+    <a href="/cdn-cgi/l/email-protection#32415a5d5c72575f535b5e1c515d5f" class="contact-link">✉ EMAIL</a>
+    <a href="https://github.com/shon2uchiha-pixel" class="contact-link" target="_blank">⌥ GITHUB</a>
+    <a href="https://www.linkedin.com/in/shon-sebastian-219081380?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="contact-link" target="_blank">in LINKEDIN</a>
+    <a href="https://www.instagram.com/shon._.sebastian?igsh=MWprZ3Zxdzh6am9wZA==" class="contact-link" target="_blank">◈ INSTAGRAM</a>
+  </div>
+</section><footer>© 2025 Shon Sebastian — Cyber Security Stud is it correct
